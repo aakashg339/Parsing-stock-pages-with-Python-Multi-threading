@@ -31,7 +31,7 @@ The working of the driver.c is explained in the steps below.
 
 ## Running it locally on your machine
 
-1. Clone this repo and cd to the project root.
+1. Clone this repository and cd to the project root.
 2. Download HTML files of equities pages of different companies (such as https://www.investing.com/equities/align-technology).
 3. Compile the C program using the command - gcc driver.c -o <name of the program> -lpthread
 4. Run the program using - ./<name of the program>

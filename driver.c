@@ -11,20 +11,10 @@
 #define PARSE_DATA_LOG_FILE "parsed_data.log"
 #define OUTPUT_FILE "output.txt"
 
-pthread_mutex_t mutex, mutexForFile;
+pthread_mutex_t mutex;
 
 // Function to make the call to python file to get data
 void makingTheCallToPythonFile(char *htmlFileName) {
-    char command[MESSAGE_SIZE];
-
-    // comand building
-    // strcpy(command, "python3 parser.py ");
-    // strcat(command, htmlFileName);
-    // strcat(command, " ");
-    // strcat(command, OUTPUT_FILE);
-
-    // popen(command, "r");
-
     pid_t pid = fork();
     if (pid == 0) {
         execlp("python3", "python3", "parser.py", htmlFileName, OUTPUT_FILE, NULL);
@@ -35,15 +25,21 @@ void makingTheCallToPythonFile(char *htmlFileName) {
 // Function to read data from python output file
 char* readDataFromPythonOutputFile() {
     FILE *fp = fopen(OUTPUT_FILE, "r");
-    char data[MESSAGE_SIZE];
-    fgets(data, sizeof(data), fp);
-    fclose(fp);
+    
+    if(fp != NULL) {
+        char data[MESSAGE_SIZE];
+        fgets(data, sizeof(data), fp);
+        fclose(fp);
 
-    char *filedata;
-    filedata = (char*)malloc(MESSAGE_SIZE);
-    strcpy(filedata, data);
+        char *filedata;
+        filedata = (char*)malloc(MESSAGE_SIZE);
+        strcpy(filedata, data);
 
-    return filedata;
+        return filedata;
+    }
+    else {
+        return "No Data";
+    }
 }
 
 void writeToFile(char *data) {
@@ -77,7 +73,6 @@ void main() {
     int i, numberOfFilesFromDrive = 0;
 
     pthread_mutex_init(&mutex, NULL);
-    pthread_mutex_init(&mutexForFile, NULL);
 
     for(i=0; i<100; i++) {
         bzero(fileNames[i], MESSAGE_SIZE);
@@ -148,6 +143,5 @@ void main() {
 	fclose(fp);
 
     pthread_mutex_destroy(&mutex);
-
 
 }

@@ -16,7 +16,7 @@ This project is part of a Computing Lab (CS69201) End Semester examination at II
 * sys (Python)
 * pthread (C)
 In case of any missing library, kindly install it using 
-    - pip3 install <library name> (for Python)
+    - pip3 install < library name > (for Python)
 (Some libraries mentioned above come as part of python3 or C)
 
 ### Role of parser.py 
@@ -33,8 +33,8 @@ The working of the driver.c is explained in the steps below.
 
 1. Clone this repository and cd to the project root.
 2. Download HTML files of equities pages of different companies (such as https://www.investing.com/equities/align-technology).
-3. Compile the C program using the command - gcc driver.c -o <name of the program> -lpthread
-4. Run the program using - ./<name of the program>
+3. Compile the C program using the command - gcc driver.c -o < name of the program > -lpthread
+4. Run the program using - ./< name of the program >
 ## Purpose
 
 The project was used to understand the usage of threads.

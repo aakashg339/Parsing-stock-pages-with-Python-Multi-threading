@@ -1,5 +1,5 @@
 
-# Web scraping system with Python (with multiprocessing)
+# Web scraping system with Python (with multithreading)
 
 Program to scrape downloaded HTML web pages of investing.com (The folder containing the HTML web pages was not included to avoid any license violations). Find below one example whose HTML can be downloaded and used. 
 
